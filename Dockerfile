@@ -34,6 +34,8 @@ ARG USE_EMBEDDING_MODEL USE_RERANKING_MODEL USE_AUXILIARY_EMBEDDING_MODEL
 ARG UID GID
 ARG BUILD_HASH
 
+# UBI python image may default to a non-root user; root is required only for dnf/pip layers below.
+# The container process must not run as UID 0: final USER is set after installs (OpenShift restricted-v2).
 USER root
 
 ENV PYTHONUNBUFFERED=1 \
@@ -100,6 +102,8 @@ COPY --chown=${UID}:0 ./backend .
 
 EXPOSE 8080
 
+# Runtime user (not root). OpenShift may run the container with another UID from the namespace range;
+# /app is chown'd to ${UID}:0 with chmod g=u so the effective group retains read/execute on image layers.
 USER ${UID}
 
 ARG BUILD_HASH
