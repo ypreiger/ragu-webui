@@ -25,6 +25,11 @@ Passionate about open-source AI? [Join our team →](https://careers.openwebui.c
 
 For more information, be sure to check out our [Open WebUI Documentation](https://docs.openwebui.com/).
 
+## Ragu (this fork)
+
+- **`docs/RAGU_OPENSHIFT.md`** — OpenShift GitOps (**`ragu-app`**) and **`RAGU_*`** environment aliases for **Red Hat OpenShift AI** KServe URLs.
+- **`Dockerfile.ubi`** — multi-stage build on **Red Hat Universal Base Image 9** (`nodejs-20` build + `python-311` runtime). Example: `podman build -f Dockerfile.ubi -t ragu-webui:ubi .`
+
 ## Key Features of Open WebUI ⭐
 
 - 🚀 **Effortless Setup**: Install seamlessly using Docker or Kubernetes (kubectl, kustomize or helm) for a hassle-free experience with support for both `:ollama` and `:cuda` tagged images.

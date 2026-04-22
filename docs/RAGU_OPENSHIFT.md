@@ -1,6 +1,6 @@
 # Ragu deployment on OpenShift (RHOAI 3.x)
 
-**GitOps:** the **`ragu-webui`** workload is applied by **Argo CD** from **`ypreiger/ragu-builder`**, path **`openshift-bootstrap/app/webui/`** (see that repo’s **`docs/RHOAI_INFERENCE_URLS.md`**).
+**GitOps:** workloads run under Argo application **`ragu-app`** from **`ypreiger/ragu-builder`**, path **`openshift-bootstrap/app/ragu-app/`** (bundles **`webui/`** + **`ragu-api/`**). See **`openshift-bootstrap/docs/RHOAI_INFERENCE_URLS.md`** and **`scripts/rhoai-discover-inference-endpoints.sh`**.
 
 ## Environment aliases (`RAGU_*`)
 
@@ -28,4 +28,4 @@ docker build -t quay.io/<org>/ragu-webui:<tag> .
 docker push quay.io/<org>/ragu-webui:<tag>
 ```
 
-Then in **ragu-builder** `openshift-bootstrap/app/webui/kustomization.yaml`, set `images[].newName` / `newTag` to that reference.
+Then in **ragu-builder** `openshift-bootstrap/app/webui/kustomization.yaml`, set `images[].newName` / `newTag` to that reference (UBI: **`Dockerfile.ubi`** in this repo).
