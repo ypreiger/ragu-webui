@@ -1,3 +1,5 @@
+# Main (merge-main-images) uses ./Dockerfile — Red Hat UBI 9 (CPU, OpenShift-friendly).
+# CUDA / Ollama / Debian-slim variants use ./Dockerfile.upstream (upstream Open WebUI layout).
 name: Create and publish Docker images with specific build args
 
 on:
@@ -89,6 +91,7 @@ jobs:
         id: build
         with:
           context: .
+          dockerfile: Dockerfile
           push: true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -194,6 +197,7 @@ jobs:
         id: build
         with:
           context: .
+          dockerfile: Dockerfile.upstream
           push: true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -300,6 +304,7 @@ jobs:
         id: build
         with:
           context: .
+          dockerfile: Dockerfile.upstream
           push: true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -404,6 +409,7 @@ jobs:
         id: build
         with:
           context: .
+          dockerfile: Dockerfile.upstream
           push: true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -507,6 +513,7 @@ jobs:
         id: build
         with:
           context: .
+          dockerfile: Dockerfile.upstream
           push: true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}

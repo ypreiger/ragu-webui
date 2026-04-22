@@ -28,7 +28,8 @@ For more information, be sure to check out our [Open WebUI Documentation](https:
 ## Ragu (this fork)
 
 - **`docs/RAGU_OPENSHIFT.md`** — OpenShift GitOps (**`ragu-app`**) and **`RAGU_*`** environment aliases for **Red Hat OpenShift AI** KServe URLs.
-- **`Dockerfile.ubi`** — multi-stage build on **Red Hat Universal Base Image 9** (`nodejs-20` build + `python-311` runtime). Example: `podman build -f Dockerfile.ubi -t ragu-webui:ubi .`
+- **Container default:** root **`Dockerfile`** is a **Red Hat UBI 9** multi-stage image (`ubi9/nodejs-20` build + `ubi9/python-311` runtime, CPU torch, non-root UID **1001** for OpenShift). Build with `podman build -t ragu-webui:latest .`
+- **Upstream-style variants** (CUDA, bundled Ollama, Debian slim): **`Dockerfile.upstream`** — used by GitHub Actions for the `*-cuda`, `*-ollama`, and `*-slim` tags; not the default for this fork.
 
 ## Key Features of Open WebUI ⭐
 
