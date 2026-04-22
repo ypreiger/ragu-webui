@@ -124,6 +124,10 @@ from open_webui.models.models import Models
 from open_webui.models.users import UserModel, Users
 from open_webui.models.chats import Chats, ChatForm
 
+from open_webui.ragu_env import apply_ragu_env_aliases
+
+apply_ragu_env_aliases()
+
 from open_webui.config import (
     # Ollama
     ENABLE_OLLAMA_API,
