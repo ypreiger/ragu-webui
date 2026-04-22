@@ -14,10 +14,14 @@ if [[ "${WEB_LOADER_ENGINE,,}" == "playwright" ]]; then
     python -c "import nltk; nltk.download('punkt_tab')"
 fi
 
+# Prefer an explicit path, then DATA_DIR (e.g. OpenShift PVC), else cwd — never default to cwd on
+# read-only image layers (UBI/OpenShift); DATA_DIR is set in ragu-builder ConfigMap to /ragu-data.
 if [ -n "${WEBUI_SECRET_KEY_FILE}" ]; then
-    KEY_FILE="${WEBUI_SECRET_KEY_FILE}"
+  KEY_FILE="${WEBUI_SECRET_KEY_FILE}"
+elif [ -n "${DATA_DIR}" ]; then
+  KEY_FILE="${DATA_DIR}/.webui_secret_key"
 else
-    KEY_FILE=".webui_secret_key"
+  KEY_FILE=".webui_secret_key"
 fi
 
 PORT="${PORT:-8080}"
